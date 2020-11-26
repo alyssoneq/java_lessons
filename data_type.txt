@@ -1,0 +1,25 @@
+- integer data types:
+
+byte --> 1 byte of memory (range = -1 to 127)
+short --> 2 bytes (range = -32768 to 32767)
+int --> 4 bytes of memory (range = -2147483648 to 214748647)
+long --> 8 bytes of memory (range = -9223372036854775808 to 9223372036854775807)
+
+- char data type
+
+alphanumeric character that requires 2 bytes of memory
+this data type is written in the code between "
+
+
+- real number data type
+
+float --> 4 bytes of memory /  fractional numbers
+double --> 8 bytes of memory / fractional numbers with 15 decimal digits
+
+- logic data type
+
+boolean --> 1 bit / stores true or false
+
+- void data type
+
+stores nothing / used to define methods that returno no value
