@@ -12,6 +12,8 @@ import java.util.Scanner;
  * The code transforms all letters in the string into uppercase
  * At the end the code displays on the screen if the string are equal or not
  * 
+ * UPDATE: the code won't convert letters to uppercase anymore
+ * 
  * @author Alysson Bruno
  */
 public class EqualStrings {
@@ -26,12 +28,16 @@ public class EqualStrings {
     System.out.println("Please type another word:");
     String word2 = userInput.nextLine();
     
-    // Converting all letter to uppercase
-    word1 = word1.toUpperCase();
-    word2 = word2.toUpperCase();
+    /* Previous code to convert all letters to uppercase
+    * word1 = word1.toUpperCase();
+    * word2 = word2.toUpperCase();
+    */
     
-    // If statement to check equality of the given strings
-    if(word1.equals(word2)){
+    /* If statement to check equality of the given strings
+    * Changed the method equals to equalsIgnoreCase
+    * The equalsIgnoreCase Method is not case sensitive
+    */
+    if(word1.equalsIgnoreCase(word2)){
         System.out.println("The 2 words are the same");
     }else{
         System.out.println("The 2 words are NOT the same");
