@@ -22,11 +22,11 @@ public class ManipulatingStrings {
     // Instance of the Scanner method
     Scanner userInput = new Scanner(System.in);
     
-    // Getting user input for a name
+    // Getting user input for a string
     System.out.println("Please!! Type a name:");
     String name = userInput.nextLine();
     
-    // Code to print the given word backwards
+    // Code to print the given string backwards
     char characters[] = name.toCharArray();
     System.out.println("The given name spelled backwards:");
     for(int i = (characters.length - 1);i >= 0;i--){
@@ -35,17 +35,23 @@ public class ManipulatingStrings {
         System.out.println("");
         System.out.println("");
     
-    // Another code to spell backwards the same given word
+    // Another code to spell backwards the same given string
     System.out.println("Lets do it again");
     System.out.println("The same name backwards:");
-    for(int i = name.length() ; i >= 0; i--){
+    for(int i = name.length()-1 ; i >= 0; i--){
         System.out.print(name.charAt(i));
     }
     
         System.out.println("");
         System.out.println("");
         
-    // Code 
-    }
+    // Code to detect the position of a given char in a string
+    System.out.println("Please choose a character to detect in your string:");
+    char guide = userInput.next().charAt(0); // Using this to get a char 
+    int position = name.indexOf(guide);
     
+    System.out.println("The position of the character "+guide+" is "+position);
+    
+    }
+        
 }
