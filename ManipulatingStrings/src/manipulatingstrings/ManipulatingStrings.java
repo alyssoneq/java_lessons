@@ -53,7 +53,6 @@ public class ManipulatingStrings {
     System.out.println("The position of the character "+guide+" is "+position);
     
         System.out.println("");
-        System.out.println("");
         
     // Code to detect and print all positions of a given char in a string
     int start = 0;
@@ -67,6 +66,22 @@ public class ManipulatingStrings {
         start = position2 + 1;
         position2 = name.indexOf(guide2,start);
     }
+    
+    // Code to detect if your name is João
+    System.out.println("Type your full name:");
+    String fullName = userInput.next();
+    System.out.println("");
+    
+    if(fullName.length() >= 4 && 
+       fullName.substring(0,4).equalsIgnoreCase("jair") ){
+    
+        System.out.println("Hello, Jair");
+        
+    }else{
+        System.out.println("Hey!! You are not Jair");
+    }
+    
+        System.out.println("");
     
     }
         
