@@ -52,6 +52,22 @@ public class ManipulatingStrings {
     
     System.out.println("The position of the character "+guide+" is "+position);
     
+        System.out.println("");
+        System.out.println("");
+        
+    // Code to detect and print all positions of a given char in a string
+    int start = 0;
+    System.out.println("Now type a char that appears many times on your string");
+    char guide2 = userInput.next().charAt(0);
+    int position2 = name.indexOf(guide2);
+    
+    System.out.println("The char "+guide2+" appears on the positions:");
+    while(start < name.length() && position2 != -1){
+        System.out.println(position2);
+        start = position2 + 1;
+        position2 = name.indexOf(guide2,start);
+    }
+    
     }
         
 }
