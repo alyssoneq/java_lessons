@@ -1,0 +1,49 @@
+- Modular Programming
+
+	Build small portions of code specific to solve a single problem.
+The programmer designs functions and procedures to solve complex problems using
+modules. This make the code more readable and feasible.
+
+	This practice allows coding, testing and evaluating of each module
+individually. It makes easier to detect bugs and errors. Using the modular
+programming, a team can separate modules to each member, thus making the
+coding of the whole project faster.
+
+	Every major programming language has a group of modules ready to be
+used. These are called language libraries are gather functions previously 
+tested and ready to use.
+
+
+- Functions
+
+	Code of a function is said to be encapsulated inside of it. Below
+we have the syntax of a function:
+
+public static DATA_TYPE <FUNCTION_NAME> (PARAMETERS){
+	
+	CODE
+}
+
+ * DATA_TYPE is the type of data that the function will return
+
+	Inside the function variable can be declared but they are bound to
+only be local. It is possible to have a function with zero local variables.
+
+	A good practice is to declare constants to fixed data that will be
+used indefinitely. By doing this, you will only to change one line of code,
+if you desire to change the constant value in your entire code.
+
+ 
+- Procedures
+
+	They are the same of functions. The only difference is that they do
+not return a value. The void data type tells that the procedure will not
+return a value.
+
+	the syntax of a procedure:
+
+public static void <PROCEDURE_NAME> (PARAMETERS){
+	PROCEDURE BODY
+}
+
+
