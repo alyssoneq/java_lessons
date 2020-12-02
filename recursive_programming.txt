@@ -1,0 +1,22 @@
+- RECURSIVE PROGRAMMING
+
+	Recursion stands for the process of repeting something that was
+previously shown.
+
+	example of an infinite recursive function:
+
+publica class ProgramRecursion{
+	public static void main(String[] args){
+		System.out.println(functionX());
+	}
+
+	public static int functionX(){
+	return functionX();
+	}
+}
+
+	An infinite recursive function is a problem to a program. Running
+it will make the program crash because the memory allocated to each call
+of the function will be greater than the actual memory of the computer.
+
+
