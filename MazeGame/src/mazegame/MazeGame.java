@@ -14,9 +14,12 @@ public class MazeGame {
     // Declaring constants to be used in the creation of the maze board
     private static final char VERTICAL_WALL = '|';
     private static final char HORIZONTAL_WALL = '-';
+    private static final char INTERNAL_WALL1 = '=';
+    private static final char INTERNAL_WALL2 = '+';
     private static final char AREA = ' ';
     private static final char SIZE = 10;
     private static char[][] board;
+    private static final double CHANCE = 0.7;
            
     public static void main(String[] args) {
         //Creating the board on screen
@@ -42,16 +45,25 @@ public class MazeGame {
         // Looping through internal board area
         for(int i = 1; i < SIZE - 1; i++){
             for(int j = 1; j < SIZE - 1; j++){
-                board[i][j] = AREA;
+                // Making the internal walls random
+                if (Math.random() > CHANCE && Math.random() < 0.85) {
+                    board[i][j] = INTERNAL_WALL1;
+                }else if(Math.random() > 0.85){
+                    board[i][j] = INTERNAL_WALL2;
+                }else {
+                    board[i][j] = AREA;
+                }
+                
             }
         
         }
     }
     
     public static void printingMatrix() {
+        // Looping through to print the maze board
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                System.out.print(board[i][j]);
+                System.out.print(board[i][j]);              
             }
             System.out.println("");
         }
