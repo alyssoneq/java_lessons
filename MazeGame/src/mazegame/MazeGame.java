@@ -18,8 +18,14 @@ public class MazeGame {
     private static final char INTERNAL_WALL2 = '+';
     private static final char AREA = ' ';
     private static final char SIZE = 10;
+    private static final char BEGIN = 'B';
+    private static final char END = 'E';
     private static char[][] board;
-    private static final double CHANCE = 0.7;
+    private static final double CHANCE = 0.60;
+    private static int beginRow;
+    private static int beginColumn;
+    private static int endRow;
+    private static int endColumn;
            
     public static void main(String[] args) {
         //Creating the board on screen
@@ -57,6 +63,15 @@ public class MazeGame {
             }
         
         }
+        // Creating the beginning position of the game
+        beginRow = generateNumber(1, SIZE/2 - 1);
+        beginColumn = generateNumber(1, SIZE/2 - 1);
+        board[beginRow][beginColumn] = BEGIN;
+        
+        // Creating the ending position of the game
+        endRow = generateNumber(SIZE/2, SIZE - 2);
+        endColumn = generateNumber(SIZE/2, SIZE - 2);
+        board[endRow][endColumn] = END;
     }
     
     public static void printingMatrix() {
@@ -67,6 +82,12 @@ public class MazeGame {
             }
             System.out.println("");
         }
+    }
+    
+    public static int generateNumber(int min, int max) {
+        // Because Math.round returns a long data type, recast int
+        int value = (int) Math.round(Math.random()*(max - min));
+        return min+value;       
     }
     
 }
