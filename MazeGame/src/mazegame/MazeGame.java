@@ -20,8 +20,10 @@ public class MazeGame {
     private static final char SIZE = 10;
     private static final char BEGIN = 'B';
     private static final char END = 'E';
+    private static final char PATH = '.';
+    private static final char BLOCKED = 'x';
     private static char[][] board;
-    private static final double CHANCE = 0.60;
+    private static final double CHANCE = 0.70;
     private static int beginRow;
     private static int beginColumn;
     private static int endRow;
@@ -32,6 +34,14 @@ public class MazeGame {
         board = new char[SIZE][SIZE];
         buildingMatrix();
         printingMatrix();
+        
+        System.out.println("\n - SEARCHING FOR A PATH - \n");
+        boolean found = findPath(beginRow, beginColumn);
+        if (found) {
+            System.out.println("FOUND A PATH");
+        } else {
+            System.out.println("THERE IS NO PATH");
+        }
         
     }
     
@@ -52,10 +62,10 @@ public class MazeGame {
         for(int i = 1; i < SIZE - 1; i++){
             for(int j = 1; j < SIZE - 1; j++){
                 // Making the internal walls random
-                if (Math.random() > CHANCE && Math.random() < 0.85) {
+                if (Math.random() > CHANCE) {
                     board[i][j] = INTERNAL_WALL1;
-                }else if(Math.random() > 0.85){
-                    board[i][j] = INTERNAL_WALL2;
+                //}else if(Math.random() > 0.85){
+                   // board[i][j] = INTERNAL_WALL2;
                 }else {
                     board[i][j] = AREA;
                 }
@@ -85,9 +95,71 @@ public class MazeGame {
     }
     
     public static int generateNumber(int min, int max) {
-        // Because Math.round returns a long data type, recast int
+        // Math.round returns a long data type, then recast int
         int value = (int) Math.round(Math.random()*(max - min));
         return min+value;       
     }
     
+    public static boolean findPath(int actualRow, int actualColumn){
+        int nextRow;
+        int nextColumn;
+        boolean found = false;
+        
+        // go up
+        nextRow = actualRow - 1;
+        nextColumn = actualColumn;
+        found = tryPath(nextRow,nextColumn);
+        
+        // go down
+        if(!found){
+            nextRow = actualRow + 1;
+            nextColumn = actualColumn;
+            found = tryPath(nextRow, nextColumn);
+        }
+        
+        // go left
+        if(!found){
+            nextRow = actualRow;
+            nextColumn = actualColumn - 1;
+            found = tryPath(nextRow, nextColumn);
+        }
+        
+        // go right
+        if(!found){
+            nextRow = actualRow;
+            nextColumn = nextColumn + 1;
+            found = tryPath(nextRow, nextColumn);
+        }
+        
+        return found;
+    }
+    
+    public static boolean tryPath(int nextRow, int nextColumn){
+        boolean found = false;
+        if(board[nextRow][nextColumn] == END){
+            found = true;
+        }else if(emptySpace(nextRow, nextColumn)){
+            // mark movement on the board area
+            board[nextRow][nextColumn] = PATH;
+            printingMatrix();
+            System.out.println("");
+            found = findPath(nextRow, nextColumn);
+            if (!found) {
+                board[nextRow][nextColumn] = BLOCKED;
+                printingMatrix();
+                System.out.println("");
+            }
+        }
+        
+        return found;
+    }
+    
+    public static boolean emptySpace (int row, int column){
+        boolean blank = false;
+        if (row >= 0 && column >= 0 && row < SIZE && column < SIZE) {
+            blank = (board[row][column] == AREA);
+        }
+        
+        return blank;
+    }
 }
