@@ -103,4 +103,41 @@ public class TicTacToe {
         }
     }
     
+    public static void checkWinner() {
+        // Initializing the loop counter 
+        int i = 0;
+        
+        // If statement to check for a horizontal win
+        for ( i = 0; i < 3; i++) {
+            if (spot[i][0] == spot[i][1] && spot[i][0] == spot[i][2]) {
+                if (spot[i][0] == 1) winner = 1;
+                if (spot[i][0] == 2) winner = 2;
+            }
+        }
+        
+        // If statement to check for a vetical win 
+        for ( i = 0; i < 3; i++) {
+            if (spot[0][i] == spot[1][i] && spot[0][i] == spot[2][i]) {
+                if (spot[0][i] == 1) winner = 1;
+                if (spot[0][i] == 2) winner = 2;
+            }
+        }
+        
+        // If statement to check for a upper diagonal win
+        if (spot[0][0] == spot[1][1] && spot[0][0] == spot[2][2]) {
+            if (spot[0][0] == 1) winner = 1;
+            if (spot[0][0] == 2) winner = 2;
+        }
+        
+        
+        // If statement to check for a bottom diagonal win
+        if (spot[2][0] == spot[1][1] && spot[2][0] == spot[0][2]) {
+            if (spot[2][0] == 1) winner = 1;
+            if (spot[2][0] == 2) winner = 2;
+        }
+
+        
+        
+    }
+    
 }
