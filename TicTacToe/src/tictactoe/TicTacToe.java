@@ -57,4 +57,50 @@ public class TicTacToe {
         drawOnBoard(2, 2);
     }
     
+    public static void play(int player) {
+        // Initializing the counter
+        int i = 0;
+        // Determining the current player
+        if (player == 1) {
+            currentPlayer = 1;
+        } else {
+            currentPlayer = 2;
+        }
+        System.out.println("\n\n Player "+currentPlayer+" turn");
+        
+        // While statement to get user choice
+        while (i == 0) {            
+            row = 0;
+            column = 0;
+            while (row < 1 || row > 3) {                
+                System.out.print("Choose the row(1,2,3): ");
+                row = userInput.nextInt();
+                if (row < 1 || row > 3) {
+                    System.out.println("Please choose a row between 1 and 3");
+                }
+            }
+            
+            while (column < 1 || column > 3) {                
+                System.out.print("Choose the column(1,2,3):");
+                column = userInput.nextInt();
+                if (column < 1 || column > 3) {
+                    System.out.println("Please choose a row between 1 and 3");
+                }
+            }
+            
+            // Making adjustments on the choices
+            row -= 1;
+            column -= 1;
+            
+            // If statement to check if the spot in the board is empty
+            if (spot[row][column] == 0) {
+                spot[row][column] = currentPlayer;
+                i = 1;                
+            } else {
+                System.out.println("Spot already taken");
+            }
+            
+        }
+    }
+    
 }
