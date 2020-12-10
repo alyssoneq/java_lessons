@@ -9,6 +9,9 @@ import java.util.Scanner;
 
 /**
  * Program to create a TicTacToe game
+ * Every player will have their round to play
+ * A player chooses the row and column of slot to be marked
+ * At the end, the winner will be announced or a draw
  * 
  * @author Alysson Bruno
  */
@@ -16,11 +19,15 @@ public class TicTacToe {
     // Initial elements of the game 
     private static int currentPlayer, row, column, winner;
     private static int[][] spot = new int[3][3];
+    private static String player1, player2;
     
     // Instance of the Scanner
     private static Scanner userInput = new Scanner(System.in);
    
     public static void main(String[] args) {
+        // Recording the players names
+        registry();
+        
         // Loop to every board slot       
         for (int j = 0; j < 9; j++) {
             // Creating the board
@@ -43,9 +50,11 @@ public class TicTacToe {
         // Generating the board one last time
         game();
         // Checking for win or draw
-        if (winner == 1 || winner == 2) {
-            System.out.println("\n\nThe winner is "+winner);
-        } else {
+        if (winner == 1 ) {
+            System.out.println("\n\nThe winner is "+player1);
+        }else if( winner == 2){
+            System.out.println("\n\nThe winnter is "+player2);
+        }else {
             System.out.println("Draw");
         }
         
@@ -89,10 +98,12 @@ public class TicTacToe {
         // Determining the current player
         if (player == 1) {
             currentPlayer = 1;
+            System.out.println("\n\n Player "+player1+" turn");
         } else {
             currentPlayer = 2;
+            System.out.println("\n\n Player "+player2+" turn");
         }
-        System.out.println("\n\n Player "+currentPlayer+" turn");
+        
         
         // While statement to get user choice
         while (i == 0) {            
@@ -164,6 +175,18 @@ public class TicTacToe {
 
         
         
+    }
+
+    private static void registry() {
+        // Registration process
+        System.out.println("Hello!!");
+        System.out.println("Please! Insert the name of each player");
+        System.out.println("Player 1 name: ");
+        player1 = userInput.nextLine();
+        System.out.println("Player 2 name: ");
+        player2 = userInput.nextLine();
+        
+        System.out.println("Thank you - Lets play!!");
     }
     
 }
