@@ -43,7 +43,7 @@ public class MovieData {
     }
 
     // Method to get user input data
-    private static Movie readData(Scanner userInput) {
+    public static Movie readData(Scanner userInput) {
     // Instance of the movie class
     Movie movie = new Movie();
     
@@ -58,6 +58,11 @@ public class MovieData {
     System.out.println("- Type the price of the movie:");
     movie.price = userInput.nextDouble();
     userInput.nextLine();
+    System.out.println("- Type the movie rating:");
+    System.out.println("G , PG, PG13, R, NC17 ");
+    MovieRate rate = getRate(userInput.nextLine());
+    movie.rate = nameRate(rate);
+    
     
     return movie;
     
@@ -71,7 +76,62 @@ public class MovieData {
     System.out.println("author: "+movie.author);
     System.out.println("year: "+movie.year);
     System.out.println("price: "+movie.price);
+    System.out.println("rating: "+movie.rate);
     System.out.println("   ^     ^   ");
+    }
+    
+    // Method to select the rating from an enum
+    private static MovieRate getRate(String rate) {
+        MovieRate rateName = MovieRate.G;
+        
+        //Switch statement to select the right enum
+        switch (rate){
+            case "G":
+                rateName = MovieRate.G;
+                break;
+            case "PG":
+                rateName = MovieRate.PG;
+                break;
+            case "PG13":
+                rateName = MovieRate.PG13;
+                break;
+            case "R":
+                rateName = MovieRate.R;
+                break;
+            case "NC17":
+                rateName = MovieRate.NC17;
+                break;
+        
+        }
+                
+        return rateName;
+    }
+
+    // Method to get right name for the rating selected
+    private static String nameRate(MovieRate rate) {
+        String name = "G - General Audience";
+        
+        // Switch statement to get string matching the rating
+        switch(rate){
+            case G:
+                name = "G - All ages";
+                break;
+            case PG:
+                name = "PG - Not for children";
+                break;
+            case PG13:
+                name = "PG-13: Not for children under 13";
+                break;
+            case R:
+                name = "R - Under 17 requires adult";
+                break;
+            case NC17:
+                name = "NC-17: No under 17 admitted";
+                break;
+        
+        }
+        
+        return name;
     }
     
 }

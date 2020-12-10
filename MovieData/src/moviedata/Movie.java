@@ -15,4 +15,5 @@ class Movie {
    public String author;
    public int year;
    public double price;
+   public String rate;
 }
