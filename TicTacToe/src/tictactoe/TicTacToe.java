@@ -20,6 +20,7 @@ public class TicTacToe {
     private static int currentPlayer, row, column, winner;
     private static int[][] spot = new int[3][3];
     private static String player1, player2;
+    private static long timer, playTime;
     
     // Instance of the Scanner
     private static Scanner userInput = new Scanner(System.in);
@@ -27,6 +28,9 @@ public class TicTacToe {
     public static void main(String[] args) {
         // Recording the players names
         registry();
+        
+        // Setting the initial play time
+        setTime();
         
         // Loop to every board slot       
         for (int j = 0; j < 9; j++) {
@@ -49,14 +53,20 @@ public class TicTacToe {
         
         // Generating the board one last time
         game();
+        
+        // Getting the play time
+        playTime = getPlayTime();
         // Checking for win or draw
         if (winner == 1 ) {
             System.out.println("\n\nThe winner is "+player1);
         }else if( winner == 2){
-            System.out.println("\n\nThe winnter is "+player2);
+            System.out.println("\n\nThe winner is "+player2);
         }else {
             System.out.println("Draw");
         }
+        
+        // Displaying the play time
+        System.out.println("The total play time was "+playTime+"s");
         
     }
     
@@ -187,6 +197,16 @@ public class TicTacToe {
         player2 = userInput.nextLine();
         
         System.out.println("Thank you - Lets play!!");
+    }
+
+    private static void setTime() {
+        // System.currentTimeMillis returns the system time in milliseconds
+        timer = System.currentTimeMillis();
+    }
+
+    private static long getPlayTime() {
+        // Returning the value of time spent in the game in seconds
+        return (System.currentTimeMillis() - timer)/1000;
     }
     
 }
