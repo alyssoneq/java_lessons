@@ -21,8 +21,34 @@ public class TicTacToe {
     private static Scanner userInput = new Scanner(System.in);
    
     public static void main(String[] args) {
-        // to be implemented
+        // Loop to every board slot       
+        for (int j = 0; j < 9; j++) {
+            // Creating the board
+            game();
+            
+            // Initiating the player turn
+            if (j%2 == 0) {
+                play(2);
+            } else {
+                play(1);
+            }
+            
+            // Checking for a winner
+            checkWinner();
+            if (winner == 1 || winner == 2) {
+                j = 10;
+            }
+        }
+        
+        // Generating the board one last time
         game();
+        // Checking for win or draw
+        if (winner == 1 || winner == 2) {
+            System.out.println("\n\nThe winner is "+winner);
+        } else {
+            System.out.println("Draw");
+        }
+        
     }
     
     public static void drawOnBoard(int x, int y) {
@@ -105,7 +131,7 @@ public class TicTacToe {
     
     public static void checkWinner() {
         // Initializing the loop counter 
-        int i = 0;
+        int i;
         
         // If statement to check for a horizontal win
         for ( i = 0; i < 3; i++) {
