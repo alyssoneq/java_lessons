@@ -5,6 +5,12 @@
  */
 package tictactoe;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 /**
@@ -23,11 +29,15 @@ public class TicTacToe {
     private static Player[] players = new Player[50];
     private static int numberOfPlayers = 0;
     private static long timer, playTime;
+    private static File rankingFile = new File("ranking.obj");
     
     // Instance of the Scanner
     private static Scanner userInput = new Scanner(System.in);
    
     public static void main(String[] args) {
+        // Fetching the players records
+        fetchPlayersRecords();
+        
         // Recording the players names
         registry();
         
@@ -71,8 +81,11 @@ public class TicTacToe {
             System.out.println("Draw");
         }
         
+        // Updating the players records
+        savePlayersRecords();
+        
         // Displaying the play time
-        System.out.println("The total play time was "+playTime+"s");
+        System.out.println(" The total play time was "+playTime+"s\n");
         
         // Displaying the player ranking
         printRanking();
@@ -244,15 +257,43 @@ public class TicTacToe {
     
     // Procedure to print the players ranking
     private static void printRanking() {
-        System.out.println("--- Players Ranking ---");
+        System.out.println("--- Players Ranking ---\n");
         for (int i = 0; i < numberOfPlayers; i++) {
             System.out.println("Name: "+players[i].name);
             System.out.println("Victories : "+players[i].victories);
             System.out.println("Defeats: "+players[i].defeats);
+            System.out.println("");
             
+        }
+        System.out.println("-----------------------");
+    }
+    
+    // Procedure to save players records in the ranking file
+    public static void savePlayersRecords() {
+        // Using the ObjectOutPutStream to manipulate the ranking file
+        try {
+            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(rankingFile));
+            output.writeObject(players);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
     
+    // Procedure to read the ranking file
+    public static void fetchPlayersRecords() {
+        // Using the ObjectInputStream to fetch data from the ranking file
+        try {
+            ObjectInputStream output = new ObjectInputStream(new FileInputStream(rankingFile));
+            players = (Player[]) output.readObject();
+            while (players[numberOfPlayers] != null && numberOfPlayers < 50) {                
+                numberOfPlayers += 1;
+            }
+        } catch (FileNotFoundException e){
+            // Does nothing
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
     
     
 }
